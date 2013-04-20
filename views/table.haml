@@ -1,0 +1,53 @@
+!!!
+%html
+  %head
+    %title Quick CV - Empowering the lazy
+  %body
+    %table{ style: "width:100%" }
+      %thead
+        %tr
+          %th{ style: "width: 33%" }= @presenter.address
+          %th= @presenter.full_name
+          %th{ style: "width: 33%" }
+            = @presenter.phone_number
+            = @presenter.email_address
+      %tbody
+        %tr
+          %th{ colspan: 3 } Employment
+        - @user.data['positions']['values'].each do |position|
+          %tr
+            %th= position['title']
+            %th= position['company']['name']
+            %th
+              = "#{position['startDate']['month']}/#{position['startDate']['year']}"
+              &mdash;
+              - if position['isCurrent']
+                Current
+              - else
+                = "#{position['endDate']['month']}/#{position['endDate']['year']}"
+          %tr
+            %td{ colspan: 3 }
+              = position['summary']
+
+        %tr
+          %th{ colspan: 3 } Education
+        - @user.data['educations']['values'].each do |education|
+          %tr
+            %th= "#{education['degree']} #{education['fieldOfStudy']}"
+            %th= education['schoolName']
+            %th
+              = "#{education['startDate']['month']}/#{education['startDate']['year']}"
+              &mdash;
+              = "#{education['endDate']['month']}/#{education['endDate']['year']}"
+          %tr
+            %td{ colspan: 3 }
+              = education['notes']
+
+        %tr
+          %th{ colspan: 3 } Skills &amp; Specialities
+        %tr
+          %td{ colspan: 3 }
+            %ul
+              %li= @user.data['skills']['values'].collect { |skill| skill['skill']['name'] }.join(", ")
+              %li= @user.data['interests']
+              %li= @user.data['specialties']

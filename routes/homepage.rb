@@ -23,6 +23,8 @@ class QuickCVApp < Sinatra::Application
   end
 
   get "/test" do
-    @user.data.inspect
+    @user.data # I just want to populate the data before the view
+    @presenter = UserPresenter.new(@user)
+    haml :table
   end
 end
