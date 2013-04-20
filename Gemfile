@@ -2,7 +2,8 @@ source "https://rubygems.org"
 
 gem "sinatra"
 gem "haml"
-gem "linkedin"
+gem "oauth2"
+gem "oj"
 
 group :development do
   gem "shotgun"

@@ -20,4 +20,5 @@ class QuickCVApp < Sinatra::Application
   end
 end
 
+require_relative "models/init.rb"
 require_relative "routes/init.rb"

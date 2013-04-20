@@ -1,15 +1,22 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    faraday (0.8.5)
+      multipart-post (~> 1.1)
     haml (4.0.2)
       tilt
-    hashie (1.2.0)
-    linkedin (0.3.7)
-      hashie (~> 1.2)
-      multi_json (~> 1.0)
-      oauth (~> 0.4)
+    httpauth (0.2.0)
+    jwt (0.1.5)
+      multi_json (>= 1.0)
     multi_json (1.7.2)
-    oauth (0.4.7)
+    multipart-post (1.1.5)
+    oauth2 (0.8.0)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
+    oj (2.0.7)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
@@ -26,6 +33,7 @@ PLATFORMS
 
 DEPENDENCIES
   haml
-  linkedin
+  oauth2
+  oj
   shotgun
   sinatra
