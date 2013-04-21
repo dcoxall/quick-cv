@@ -5,11 +5,11 @@ Quick CV will eventually be able to generate a professional looking CV using onl
 
 ### Dependencies
 - **LinkedIn App**. Quick CV uses the LinkedIn api to get the data in which to populate the CV/Resume
-- **Memcache** to handle the applications cache
+- **Memcached** to handle the applications cache
 - **Ruby 1.9.3** the main application is developed to run on ruby1.9.3 but other versions may well work
 
 ### Development
-Quick CV uses bundler to manage gem dependencies. To get started make sure you have ruby1.9.3 *(or any other supported ruby version)*, bundler gem installed and memcache running *(by default it expects localhost to have a memcache server running on the default port).*
+Quick CV uses bundler to manage gem dependencies. To get started make sure you have ruby1.9.3 *(or any other supported ruby version)*, bundler gem installed and memcache running *(by default it expects localhost to have a memcached server running on the default port).*
 
 Create a [LinkedIn App](https://www.linkedin.com/secure/developer?newapp=) and store the app key and app secret in an environment variable (`LINKEDIN_APP_KEY` and `LINKEDIN_APP_SECRET` respectively)
 
