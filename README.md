@@ -9,7 +9,7 @@ Quick CV will eventually be able to generate a professional looking CV using onl
 - **Ruby 1.9.3** the main application is developed to run on ruby1.9.3 but other versions may well work
 
 ### Development
-Quick CV uses bundler to manage gem dependencies. To get started make sure you have ruby1.9.3 (*or any other supported ruby version*), bundler gem installed and memcache running (*by default it expects localhost to have a memcache server running on the default port*).
+Quick CV uses bundler to manage gem dependencies. To get started make sure you have ruby1.9.3 *(or any other supported ruby version)*, bundler gem installed and memcache running *(by default it expects localhost to have a memcache server running on the default port).*
 
 Create a [LinkedIn App](https://www.linkedin.com/secure/developer?newapp=) and store the app key and app secret in an environment variable (`LINKEDIN_APP_KEY` and `LINKEDIN_APP_SECRET` respectively)
 
@@ -22,9 +22,9 @@ Now use the following to start a local server.
 - PDF generation using `prawn`
 - Tests, specs and VCR recordings
 - Front-end design/UI
-- Customisable sections (*displaying languages instead of skills for example*)
-- Customisable order (*order the sections using drag and drop*)
-- Shareable URIs (*share a custom URI that will render your up-to-date CV*)
+- Customisable sections *(displaying languages instead of skills for example)*
+- Customisable order *(order the sections using drag and drop)*
+- Shareable URIs *(share a custom URI that will render your up-to-date CV)*
 - ???
 - Suggestions?
 
