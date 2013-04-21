@@ -1,6 +1,7 @@
 # encoding: utf-8
 require "sinatra"
 require "haml"
+require "dalli"
 
 class QuickCVApp < Sinatra::Application
   enable :sessions
@@ -8,15 +9,11 @@ class QuickCVApp < Sinatra::Application
   configure :production do
     set :haml, { ugly: true }
     set :clean_trace, true
+    set :cache_client, Dalli::Client.new('localhost:11211')
   end
 
   configure :development do
-    # ...
-  end
-
-  helpers do
-    include Rack::Utils
-    alias_method :h, :escape_html
+    set :cache_client, Dalli::Client.new('localhost:11211')
   end
 end
 

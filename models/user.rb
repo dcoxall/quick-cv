@@ -9,6 +9,7 @@ class User
   def initialize(options = {})
     @api_state = options[:state] || SecureRandom.hex(15)
     @auth_token = options[:token] unless options[:token].nil?
+    @cache_client = options[:cache_client]
   end
 
   def authorize_url
@@ -36,8 +37,12 @@ class User
   private
 
   def populate_data
-    response = access_token.get("https://www.linkedin.com/v1/people/~:(first-name,last-name,email-address,specialties,positions,honors,interests,languages,skills,certifications,educations,courses,volunteer,phone-numbers,main-address)?format=json")
-    @data = Oj.load(response.body)
+    unless @cache_client && raw_data = @cache_client.get("profile_#{@api_state}")
+      response = access_token.get("https://www.linkedin.com/v1/people/~:(first-name,last-name,email-address,specialties,positions,honors,interests,languages,skills,certifications,educations,courses,volunteer,phone-numbers,main-address)?format=json")
+      raw_data = response.body
+      @cache_client.set("profile_#{@api_state}", raw_data, 10.minutes, compress: true) if @cache_client
+    end
+    @data = Oj.load(raw_data)
   end
 
   def auth_token
