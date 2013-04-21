@@ -1,4 +1,6 @@
 # encoding: utf-8
+require "date"
+
 class CollegePresenter
   attr_reader :qualification, :establishment, :date_range, :summary
 
@@ -12,6 +14,7 @@ class CollegePresenter
   private
 
   def build_date_range(start_date_hash, end_date_hash)
+    return nil if start_date_hash.nil?
     result = [format_date(start_date_hash['year'], start_date_hash['month'])]
     result << (end_date_hash.nil? ? "Current" : format_date(end_date_hash['year'], end_date_hash['month']))
     result

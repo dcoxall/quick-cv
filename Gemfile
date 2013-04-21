@@ -5,7 +5,5 @@ gem "haml"
 gem "oauth2"
 gem "oj"
 gem "dalli"
-
-group :development do
-  gem "shotgun"
-end
+gem "shotgun", group: :development
+gem "rspec", group: :test

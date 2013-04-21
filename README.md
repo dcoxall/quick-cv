@@ -31,9 +31,9 @@ Now use the following to start a local server.
 ### Contributing
 Contributions are more than welcome! Please just fork the repository and make a pull request when complete.
 
-As you can see there are currently no tests/specs and this is something I would like to change so any pull requests that implement tests will be highly appreciated. The test framework by the way will likely be `rspec` although feel free to suggest something else.
+All non-documentation changes should include passing specs.
 
-VCR recordings for later testing would be hugely helpful. Thos with knowledge on how to do that please contribute. Don't forget to remove any personal identifying information from the recordings. As always testing against real user data would be much more beneficial to identifying issues.
+VCR recordings for later testing would be hugely helpful. Those with knowledge on how to do that please contribute. Don't forget to remove any personal identifying information from the recordings. As always testing against real user data would be much more beneficial to identifying issues.
 
 Feel free to also create a CONTRIBUTIONS.md and add yourself to that.
 

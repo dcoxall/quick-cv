@@ -1,4 +1,6 @@
 # encoding: utf-8
+require "date"
+
 class PositionPresenter
   attr_reader :job_title, :company_name, :date_range, :responsibilities
 
@@ -12,6 +14,7 @@ class PositionPresenter
   private
 
   def build_date_range(start_date_hash, end_date_hash, is_current = false)
+    return nil if start_date_hash.nil?
     result = [format_date(start_date_hash['year'], start_date_hash['month'])]
     result << (is_current ? "Current" : format_date(end_date_hash['year'], end_date_hash['month']))
     result
