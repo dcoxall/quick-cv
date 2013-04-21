@@ -13,7 +13,7 @@ class UserPresenter
       @model.data['phoneNumbers']['values'][0]['phoneNumber']
     else
       number = @model.data['phoneNumbers']['values'].select do |number|
-        number['phoneType'].downcase == type.downcase
+        number['phoneType'].downcase == type.to_s.downcase
       end
       number['phoneNumber']
     end
@@ -25,5 +25,17 @@ class UserPresenter
 
   def email_address
     @model.data['emailAddress']
+  end
+
+  def employment
+    EmploymentPresenter.new(@model.data['positions'])
+  end
+
+  def education
+    EducationPresenter.new(@model.data['educations'])
+  end
+
+  def skills
+    SkillsPresenter.new(@model.data['skills'])
   end
 end

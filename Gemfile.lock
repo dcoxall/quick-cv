@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    dalli (2.6.0)
     faraday (0.8.5)
       multipart-post (~> 1.1)
     haml (4.0.2)
@@ -32,6 +33,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dalli
   haml
   oauth2
   oj

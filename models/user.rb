@@ -1,12 +1,13 @@
 # encoding: utf-8
 require "oauth2"
 require "oj"
+require "securerandom"
 
 class User
-  attr_accessor :api_state
+  attr_reader :api_state
 
   def initialize(options = {})
-    self.api_state = options[:state] || SecureRandom.hex(15)
+    @api_state = options[:state] || SecureRandom.hex(15)
     @auth_token = options[:token] unless options[:token].nil?
   end
 
@@ -14,7 +15,7 @@ class User
     api_client.auth_code.authorize_url(
       :scope => "r_fullprofile r_contactinfo r_emailaddress",
       :redirect_uri => "http://127.0.0.1:9393/verify",
-      :state => api_state)
+      :state => @api_state)
   end
 
   def authorized?

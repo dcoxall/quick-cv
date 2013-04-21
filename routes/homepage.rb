@@ -2,8 +2,8 @@
 class QuickCVApp < Sinatra::Application
   before do
     options = {}
-    options[:state] = session['user_state'].to_s
-    options[:token] = session['token'].to_s
+    options[:state] = session['user_state']
+    options[:token] = session['token']
     @user = User.new(options)
   end
 
