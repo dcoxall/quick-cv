@@ -3,8 +3,9 @@ require "oauth2"
 require "oj"
 require "securerandom"
 
-class User
-  attr_reader :api_state
+class APIConnection
+  attr_accessor :api_state, :cache_client, :auth_token
+  attr_reader :last_response
 
   def initialize(options = {})
     @api_state = options[:state] || SecureRandom.hex(15)
@@ -16,7 +17,7 @@ class User
     api_client.auth_code.authorize_url(
       :scope => "r_fullprofile r_contactinfo r_emailaddress",
       :redirect_uri => "http://127.0.0.1:9393/verify",
-      :state => @api_state)
+      :state => api_state)
   end
 
   def authorized?
@@ -25,9 +26,7 @@ class User
 
   def validate(code)
     token = api_client.auth_code.get_token(code, :redirect_uri => "http://127.0.0.1:9393/verify")
-    @auth_token = token.token
-    populate_data
-    @auth_token
+    auth_token = token.token
   end
 
   def data

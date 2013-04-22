@@ -3,7 +3,11 @@ class SkillsPresenter
   include Enumerable
 
   def initialize(data_hash = {})
-    @skills = data_hash['values'].collect { |s| s['skill']['name'] }
+    if data_hash != nil && data_hash.is_a?(Hash) && data_hash['values'] != nil
+      @skills = data_hash['values'].collect { |s| s['skill']['name'].to_s }
+    else
+      @skills = []
+    end
   end
 
   def each(&block)

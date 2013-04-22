@@ -5,8 +5,10 @@ class EducationPresenter
   include Enumerable
 
   def initialize(education_data)
-    @data = education_data['values'].collect do |college|
-      CollegePresenter.new(college)
+    if education_data != nil && education_data.is_a?(Hash) && education_data['values'] != nil
+      @data = education_data['values'].collect { |college| CollegePresenter.new(college) }
+    else
+      @data = []
     end
   end
 
