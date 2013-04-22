@@ -1,4 +1,13 @@
 # encoding: utf-8
+require_relative "employment_presenter.rb"
+require_relative "education_presenter.rb"
+require_relative "skills_presenter.rb"
+
+# FIXME: This feels wrong. I think the user model is incorrect.
+#        The class isn't really user but APIConnection or something we
+#        could then just pass the api data into this as opposed to the
+#        object.
+
 class UserPresenter
   def initialize(user_model)
     @model = user_model

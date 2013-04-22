@@ -1,7 +1,2 @@
 require_relative "user.rb"
-require_relative "position_presenter.rb"
-require_relative "employment_presenter.rb"
-require_relative "college_presenter.rb"
-require_relative "education_presenter.rb"
 require_relative "user_presenter.rb"
-require_relative "skills_presenter.rb"

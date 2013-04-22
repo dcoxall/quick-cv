@@ -40,7 +40,7 @@ class User
     unless @cache_client && raw_data = @cache_client.get("profile_#{@api_state}")
       response = access_token.get("https://www.linkedin.com/v1/people/~:(first-name,last-name,email-address,specialties,positions,honors,interests,languages,skills,certifications,educations,courses,volunteer,phone-numbers,main-address)?format=json")
       raw_data = response.body
-      @cache_client.set("profile_#{@api_state}", raw_data, 10.minutes, compress: true) if @cache_client
+      @cache_client.set("profile_#{@api_state}", raw_data, 10 * 60, compress: true) if @cache_client
     end
     @data = Oj.load(raw_data)
   end
