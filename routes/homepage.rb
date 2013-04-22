@@ -25,6 +25,7 @@ class QuickCVApp < Sinatra::Application
 
   get "/test" do
     @presenter = UserPresenter.new(@api.fetch_data)
-    haml :table
+    content_type 'application/pdf'
+    CV::Document.new(@presenter).generate
   end
 end
