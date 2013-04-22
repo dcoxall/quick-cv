@@ -67,7 +67,15 @@ describe APIConnection do
       OAuth2::Client.any_instance.stub_chain(:auth_code, :get_token) { token }
       object.validate("example_code")
     end
-
     its(:auth_token) { should eql("1234ABC") }
+  end
+
+  describe ".fetch_data" do
+    let!(:token) { double(:access_token) }
+    let!(:response) { double(:response, body: "{\"test\" : \"example\" }") }
+    before do
+      OAuth2::AccessToken.any_instance.should_receive(:get).and_return(response)
+    end
+    its(:fetch_data) { should eq({'test' => 'example'}) }
   end
 end

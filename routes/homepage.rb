@@ -5,27 +5,26 @@ class QuickCVApp < Sinatra::Application
     options[:state] = session['user_state']
     options[:token] = session['token']
     options[:cache_client] = settings.cache_client
-    @user = User.new(options)
+    @api = APIConnection.new(options)
   end
 
   get "/" do
-    "Hello World"
+    redirect "/prepare"
   end
 
   get "/prepare" do
-    session['user_state'] = @user.api_state
+    session['user_state'] = @api.api_state
     session['token'] = nil
-    redirect @user.authorize_url
+    redirect @api.authorize_url
   end
 
   get "/verify" do
-    session['token'] = @user.validate(params[:code])
+    session['token'] = @api.validate(params[:code])
     redirect "/test"
   end
 
   get "/test" do
-    @user.data # I just want to populate the data before the view
-    @presenter = UserPresenter.new(@user)
+    @presenter = UserPresenter.new(@api.fetch_data)
     haml :table
   end
 end

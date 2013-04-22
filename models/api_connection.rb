@@ -3,9 +3,13 @@ require "oauth2"
 require "oj"
 require "securerandom"
 
+
+# FIXME: Should APIConnection be concerned with caching? I think there
+#        is an argument that the caching should be handled elsewhere and
+#        not directly in this class
+
 class APIConnection
   attr_accessor :api_state, :cache_client, :auth_token
-  attr_reader :last_response
 
   def initialize(options = {})
     @api_state = options[:state] || SecureRandom.hex(15)
@@ -29,6 +33,15 @@ class APIConnection
     @auth_token = token.token
   end
 
+  def fetch_data
+    unless @cache_client && raw_data = @cache_client.get("profile_#{@api_state}")
+      response = access_token.get("https://www.linkedin.com/v1/people/~:(first-name,last-name,email-address,specialties,positions,honors,interests,languages,skills,certifications,educations,courses,volunteer,phone-numbers,main-address)?format=json")
+      raw_data = response.body
+      @cache_client.set("profile_#{@api_state}", raw_data, 10 * 60, compress: true) if @cache_client
+    end
+    @data = Oj.load(raw_data)
+  end
+
   def data
     @data ||= populate_data
   end
@@ -36,12 +49,7 @@ class APIConnection
   private
 
   def populate_data
-    unless @cache_client && raw_data = @cache_client.get("profile_#{@api_state}")
-      response = access_token.get("https://www.linkedin.com/v1/people/~:(first-name,last-name,email-address,specialties,positions,honors,interests,languages,skills,certifications,educations,courses,volunteer,phone-numbers,main-address)?format=json")
-      raw_data = response.body
-      @cache_client.set("profile_#{@api_state}", raw_data, 10 * 60, compress: true) if @cache_client
-    end
-    @data = Oj.load(raw_data)
+
   end
 
   def auth_token
