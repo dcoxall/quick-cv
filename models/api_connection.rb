@@ -26,7 +26,7 @@ class APIConnection
 
   def validate(code)
     token = api_client.auth_code.get_token(code, :redirect_uri => "http://127.0.0.1:9393/verify")
-    auth_token = token.token
+    @auth_token = token.token
   end
 
   def data

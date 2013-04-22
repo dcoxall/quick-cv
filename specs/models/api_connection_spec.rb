@@ -62,6 +62,12 @@ describe APIConnection do
   end
 
   describe ".validate" do
-    it "sets the auth token"
+    let!(:token) { double(:token, token: "1234ABC") }
+    before do
+      OAuth2::Client.any_instance.stub_chain(:auth_code, :get_token) { token }
+      object.validate("example_code")
+    end
+
+    its(:auth_token) { should eql("1234ABC") }
   end
 end
