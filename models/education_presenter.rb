@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'ostruct'
+require_relative "college_presenter.rb"
 
 class EducationPresenter
   include Enumerable

@@ -19,6 +19,8 @@ describe UserPresenter do
         ]
       },
       'mainAddress' => "Example\nAddress\nTest",
+      'interests' => "Fictional Interests",
+      'specialties' => "Fictional Specialties",
     }
   end
 
@@ -31,6 +33,14 @@ describe UserPresenter do
 
   describe "provides accessor for address" do
     its(:address) { should eql("Example Address Test") }
+  end
+
+  describe "provides accessor for interests" do
+    its(:interests) { should eql("Fictional Interests") }
+  end
+
+  describe "provides accessor for specialties" do
+    its(:specialties) { should eql("Fictional Specialties") }
   end
 
   describe "provides accessor for employment" do

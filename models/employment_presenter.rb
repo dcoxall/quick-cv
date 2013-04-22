@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'ostruct'
+require_relative "position_presenter.rb"
 
 class EmploymentPresenter
   include Enumerable

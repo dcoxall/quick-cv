@@ -4,7 +4,7 @@ require_relative "education_presenter.rb"
 require_relative "skills_presenter.rb"
 
 class UserPresenter
-  attr_reader :full_name, :address, :email_address, :employment, :education, :skills
+  attr_reader :full_name, :address, :email_address, :employment, :education, :skills, :specialties, :interests
 
   def initialize(data_hash)
     @full_name = [data_hash['firstName'], data_hash['lastName']].join(" ")
@@ -17,6 +17,8 @@ class UserPresenter
     @employment = EmploymentPresenter.new(data_hash['positions'])
     @education = EducationPresenter.new(data_hash['educations'])
     @skills = SkillsPresenter.new(data_hash['skills'])
+    @specialties = data_hash['specialties'].to_s
+    @interests = data_hash['interests'].to_s
   end
 
   def phone_number(type = nil)

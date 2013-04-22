@@ -1,44 +1,39 @@
-!!!
-%html
-  %head
-    %title Quick CV - Empowering the lazy
-  %body
-    %table{ style: "width:100%" }
-      %thead
-        %tr
-          %th{ style: "width: 33%" }= @presenter.address
-          %th= @presenter.full_name
-          %th{ style: "width: 33%" }
-            = @presenter.phone_number
-            = @presenter.email_address
-      %tbody
-        %tr
-          %th{ colspan: 3 } Employment
-        - @presenter.employment.each do |position|
-          %tr
-            %th= position.job_title
-            %th= position.company_name
-            %th= position.date_range.join(" &mdash; ")
-          %tr
-            %td{ colspan: 3 }
-              = position.responsibilities
+%table{ style: "width:100%" }
+  %thead
+    %tr
+      %th{ style: "width: 33%" }= @presenter.address
+      %th= @presenter.full_name
+      %th{ style: "width: 33%" }
+        = @presenter.phone_number
+        = @presenter.email_address
+  %tbody
+    %tr
+      %th{ colspan: 3 } Employment
+    - @presenter.employment.each do |position|
+      %tr
+        %th= position.job_title
+        %th= position.company_name
+        %th= position.date_range.join(" &mdash; ")
+      %tr
+        %td{ colspan: 3 }
+          = position.responsibilities
 
-        %tr
-          %th{ colspan: 3 } Education
-        - @presenter.education.each do |education|
-          %tr
-            %th= education.qualification
-            %th= education.establishment
-            %th= education.date_range.join(" &mdash; ")
-          %tr
-            %td{ colspan: 3 }
-              = education.summary
+    %tr
+      %th{ colspan: 3 } Education
+    - @presenter.education.each do |education|
+      %tr
+        %th= education.qualification
+        %th= education.establishment
+        %th= education.date_range.join(" &mdash; ")
+      %tr
+        %td{ colspan: 3 }
+          = education.summary
 
-        %tr
-          %th{ colspan: 3 } Skills &amp; Specialities
-        %tr
-          %td{ colspan: 3 }
-            %ul
-              %li= @presenter.skills.to_a.join(", ")
-              %li= @user.data['interests']
-              %li= @user.data['specialties']
+    %tr
+      %th{ colspan: 3 } Skills &amp; Specialities
+    %tr
+      %td{ colspan: 3 }
+        %ul
+          %li= @presenter.skills.to_a.join(", ")
+          %li= @presenter.interests
+          %li= @presenter.specialties

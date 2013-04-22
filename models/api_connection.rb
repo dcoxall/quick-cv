@@ -3,7 +3,6 @@ require "oauth2"
 require "oj"
 require "securerandom"
 
-
 # FIXME: Should APIConnection be concerned with caching? I think there
 #        is an argument that the caching should be handled elsewhere and
 #        not directly in this class
@@ -42,15 +41,7 @@ class APIConnection
     @data = Oj.load(raw_data)
   end
 
-  def data
-    @data ||= populate_data
-  end
-
   private
-
-  def populate_data
-
-  end
 
   def auth_token
     @auth_token
