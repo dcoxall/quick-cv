@@ -31,10 +31,9 @@ module CV
       end
       document.table(data, column_widths: [180, 180, 180]) do
         cells.borders = []
-        header_cells = cells.filter do |cell|
-          cell.colspan == 1
-        end
+        header_cells = row(0)
         header_cells.borders = [:bottom]
+        header_cells.border_width = 2
       end
 
       data = [[ { content: "EDUCATION", colspan: 3, font_style: :bold, size: 14, padding: [20, 5, 0, 5] } ]]
@@ -46,10 +45,9 @@ module CV
       end
       document.table(data, column_widths: [180, 180, 180]) do
         cells.borders = []
-        header_cells = cells.filter do |cell|
-          cell.colspan == 1
-        end
+        header_cells = row(0)
         header_cells.borders = [:bottom]
+        header_cells.border_width = 2
       end
 
       document.render

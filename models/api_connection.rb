@@ -10,6 +10,10 @@ require "securerandom"
 class APIConnection
   attr_accessor :api_state, :cache_client, :auth_token
 
+  API_FIELDS = %w( first-name last-name email-address specialties positions honors
+    interests languages skills certifications educations courses volunteer
+    phone-numbers main-address )
+
   def initialize(options = {})
     @api_state = options[:state] || SecureRandom.hex(15)
     @auth_token = options[:token] unless options[:token].nil?
@@ -34,7 +38,7 @@ class APIConnection
 
   def fetch_data
     unless @cache_client && raw_data = @cache_client.get("profile_#{@api_state}")
-      response = access_token.get("https://www.linkedin.com/v1/people/~:(first-name,last-name,email-address,specialties,positions,honors,interests,languages,skills,certifications,educations,courses,volunteer,phone-numbers,main-address)?format=json")
+      response = access_token.get("https://www.linkedin.com/v1/people/~:(#{API_FIELDS.join(',')})?format=json")
       raw_data = response.body
       @cache_client.set("profile_#{@api_state}", raw_data, 10 * 60, compress: true) if @cache_client
     end
