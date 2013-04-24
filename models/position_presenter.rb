@@ -22,7 +22,7 @@ class PositionPresenter
 
   def format_date(year, month = nil)
     unless month.nil?
-      month = Date::MONTHNAMES[month]
+      month = Date::MONTHNAMES[month][0..2]
       "#{month} #{year}"
     else
       year

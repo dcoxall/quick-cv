@@ -37,8 +37,8 @@ describe CollegePresenter do
     end
 
     context "with months" do
-      describe "displays full month name" do
-        it { should include("January 2013", "February 2014") }
+      describe "displays short month name" do
+        it { should include("Jan 2013", "Feb 2014") }
       end
     end
 
