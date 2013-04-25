@@ -55,6 +55,10 @@ describe UserPresenter do
     its(:skills) { should be_a(SkillsPresenter) }
   end
 
+  describe "provides accessor for certifications" do
+    its(:certifications) { should be_a(CertificationsPresenter) }
+  end
+
   describe "provides accessor for phone number" do
     context "no argument" do
       its(:phone_number) { should eql("01234567890") }
